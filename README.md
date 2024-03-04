@@ -31,7 +31,7 @@ Verified the successful deployment and operation of the application on AWS ECS.
 ECR URI for the Docker image: public.ecr.aws/y5d1f7w8/wega
 
 
-O/p
+Output:
 ![image](https://github.com/shankar0203/wega/assets/79186682/b715b233-e9eb-4e61-81d2-b0e1c90e688d)
 
 
