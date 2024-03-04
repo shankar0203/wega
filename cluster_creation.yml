@@ -1,0 +1,22 @@
+Parameters: 
+  ECSClusterName: 
+    Type: "String"
+    Default: "Test"
+
+Resources:
+  ECSCluster: 
+    Type: "AWS::ECS::Cluster"
+    Properties: 
+      ClusterName: 
+        Ref: "ECSClusterName"
+      CapacityProviders: 
+      - "FARGATE"
+      - "FARGATE_SPOT"
+      ClusterSettings: 
+      - Name: "containerInsights"
+        Value: "disabled"
+      Configuration: 
+        ExecuteCommandConfiguration: 
+          Logging: "DEFAULT"
+      ServiceConnectDefaults: 
+        Namespace: "Test"

@@ -1,0 +1,38 @@
+
+Parameters: 
+  ContainerName:
+    Type: String
+    Description: The name of the container within the task definition
+  ECRImageUri:
+    Type: String
+    Description: The URI of the Docker image in Amazon ECR
+  ContainerPort:
+    Type: Number
+    Description: Port on which the container listens for incoming traffic
+    Default: 8080
+  Memory:
+    Type: String
+    Description: The memory (in MiB) to reserve for the container
+    Default: 512
+  CPU:
+    Type: String
+    Description: The CPU units to reserve for the container (1 vCPU = 1024 CPU units)
+    Default: '256'
+
+Resources: 
+  MyTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      NetworkMode: awsvpc
+      Cpu: !Ref CPU
+      Memory: !Ref Memory
+      RequiresCompatibilities:
+        - FARGATE
+      ContainerDefinitions:
+        - Name: !Ref ContainerName
+          Image: !Ref ECRImageUri
+          Memory: !Ref Memory
+          Cpu: !Ref CPU
+          Essential: true
+          PortMappings:
+            - ContainerPort: !Ref ContainerPort
